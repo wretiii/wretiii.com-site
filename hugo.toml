@@ -4,7 +4,7 @@ title = "Chris Green"
 theme = "qubt-hugo"
 
 [params]
-  author = "Chris Green"
+  name = "Chris Green"
   description = "Security Consultant | Speaker | Writer"
   favicon = "images/favicon.ico"  # place your favicon in static/images/
   logo = "images/logo.png"        # optional site logo
