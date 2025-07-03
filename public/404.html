@@ -48,7 +48,6 @@
 
 
 
-
 <meta property="og:title" content="404 Page not found" />
 <meta property="og:description" content="Security Consultant | Speaker | Writer" />
 <meta property="og:type" content="website" />
@@ -61,9 +60,14 @@
 
 <script>
   
-  if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+  const userPref = localStorage.getItem("color-theme");
+
+  if (userPref === "dark") {
     document.documentElement.classList.add("dark");
+  } else if (userPref === "light") {
+    document.documentElement.classList.remove("dark");
   } else {
+    
     document.documentElement.classList.remove("dark");
   }
 </script>

@@ -48,7 +48,6 @@
 
 
 
-
 <meta property="og:title" content="Talks" />
 <meta property="og:description" content="Security Consultant | Speaker | Writer" />
 <meta property="og:type" content="website" />
@@ -61,9 +60,14 @@
 
 <script>
   
-  if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+  const userPref = localStorage.getItem("color-theme");
+
+  if (userPref === "dark") {
     document.documentElement.classList.add("dark");
+  } else if (userPref === "light") {
+    document.documentElement.classList.remove("dark");
   } else {
+    
     document.documentElement.classList.remove("dark");
   }
 </script>
@@ -202,13 +206,6 @@ Explored the vital role of penetration testing in strengthening cybersecurity pr
 
       </div>
     </article>
-  </div>
-
-  
-  <div class="mx-auto max-w-(--breakpoint-xl)">
-    <div class="mt-8 grid grid-flow-row grid-cols-1 justify-items-center gap-8 px-4 lg:grid-cols-2">
-      
-    </div>
   </div>
 
       </main>
