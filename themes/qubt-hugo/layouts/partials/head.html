@@ -79,7 +79,8 @@
   };
 
   const updateLogo = () => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
       setLogo(darkLogo);
     } else {
       setLogo(lightLogo);
@@ -88,5 +89,14 @@
 
   updateLogo();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        setTimeout(updateLogo, 50);
+      });
+    }
+  });
 </script>
 

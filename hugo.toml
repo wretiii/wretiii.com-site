@@ -9,7 +9,7 @@ theme = "qubt-hugo"
   favicon = "/images/mu-favicon.svg"  # place your favicon in static/images/
 
 [params.author]
-  image = "/images/mu-dark.svg"
+  image = "/images/mu-light.svg"
 
 [menu]
   [[menu.main]]
