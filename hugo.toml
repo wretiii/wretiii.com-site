@@ -1,0 +1,38 @@
+baseURL = "https://wretiii.com/"
+languageCode = "en-us"
+title = "Chris Green"
+theme = "qubt-hugo"
+
+[params]
+  name = "Chris Green"
+  description = "Security Consultant | Speaker | Writer"
+  favicon = "images/favicon.ico"  # place your favicon in static/images/
+  logo = "images/logo.png"        # optional site logo
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "talks"
+    name = "Talks"
+    url = "/talks/"
+    weight = 2
+
+#  [[menu.main]]
+#    identifier = "blog"
+#    name = "Blog"
+#    url = "/posts/"
+#    weight = 3
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 4
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
