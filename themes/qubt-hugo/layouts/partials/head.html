@@ -47,14 +47,12 @@
     {{ partialCached "math.html" . }}
 {{ end }}
 
-{{/* Favicon */}}
-{{ $icon := resources.GetMatch "icon.*" }}
-{{ with $icon }}
-  {{ $iconApple := .Resize "180x180" }}
-  {{ $icon := $icon.Resize "32x32" }}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ $iconApple.RelPermalink }}" />
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ $icon.RelPermalink }}" />
+{{/* Favicon and Apple Touch Icon from config param */}}
+{{ with .Site.Params.favicon }}
+  <link rel="icon" type="image/png" href="{{ . }}">
+  <link rel="apple-touch-icon" href="{{ . }}">
 {{ end }}
+
 
 {{/* OpenGraph & Twitter Cards */}}
 {{ template "_internal/opengraph.html" . }}
@@ -68,3 +66,27 @@
     document.documentElement.classList.remove("dark");
   }
 </script>
+
+<script>
+  const darkLogo = "/images/mu-dark.svg";
+  const lightLogo = "/images/mu-light.svg";
+
+  const setLogo = (src) => {
+    const logo = document.getElementById("site-logo");
+    if (logo) {
+      logo.src = src;
+    }
+  };
+
+  const updateLogo = () => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setLogo(darkLogo);
+    } else {
+      setLogo(lightLogo);
+    }
+  };
+
+  updateLogo();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+</script>
+

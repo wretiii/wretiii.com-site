@@ -6,8 +6,10 @@ theme = "qubt-hugo"
 [params]
   name = "Chris Green"
   description = "Security Consultant | Speaker | Writer"
-  favicon = "images/favicon.ico"  # place your favicon in static/images/
-  logo = "images/logo.png"        # optional site logo
+  favicon = "/images/mu-favicon.svg"  # place your favicon in static/images/
+
+[params.author]
+  image = "/images/mu-dark.svg"
 
 [menu]
   [[menu.main]]
@@ -36,3 +38,8 @@ theme = "qubt-hugo"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
