@@ -16,7 +16,7 @@ Discussed updates on CMMC, GLBA, PCI, TSA, generative AI, and security best prac
 
 &nbsp;
 
-**INTERFACE Phoenix Conference** – 13 June 2025
+**[INTERFACE Phoenix Conference](/talks/2025-INTERFACE-Phoenix/)** – 13 June 2025
 
 *Cybersecurity and Compliance For 2025*
 
