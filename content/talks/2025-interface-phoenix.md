@@ -1,6 +1,6 @@
 ---
 title: "Cybersecurity and Compliance For 2025"
-date: 2025-07-31
+date: 2025-07-03
 summary: In this talk, we covered updates on CMMC, GLBA, PCI, TSA, generative AI, and security best practices, with penetration testing and zero-trust strategies.
 resources:
   - name: "NIST Cybersecurity Framework 2.0"
