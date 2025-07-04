@@ -13,5 +13,7 @@ resources:
 
 In this talk, we covered updates on CMMC, GLBA, PCI, TSA, generative AI, and security best practices, with penetration testing and zero-trust strategies.
 
-[📥 Download Slides](/slides/2025-interface-phoenix-slides.pdf)
+&nbsp;
+
+**[📥 Download Slides](/slides/2025-interface-phoenix-slides.pdf)**
 
