@@ -13,32 +13,6 @@ theme = "qubt-hugo"
 [params.author]
   image = "/images/computers-dark.png"
 
-# Social profiles
-[[params.social]]
-  name = "linkedin"
-  icon = "fa-brands fa-linkedin"
-  url = "https://www.linkedin.com/in/christophermgreen/"
-
-[[params.social]]
-  name = "bluesky"
-  icon = "fa-brands fa-bluesky"
-  url = "https://bsky.app/profile/wreti.bsky.social"
-
-[[params.social]]
-  name = "twitter"
-  icon = "fa-brands fa-twitter"
-  url = "https://x.com/wreti"
-
-[[params.social]]
-  name = "mastodon"
-  icon = "fa-brands fa-mastodon"
-  url = "https://mastodon.social/@wreti"
-  
-[[params.social]]
-  name = "github"
-  icon = "fa-brands fa-github"
-  url = "https://github.com/wretiii"
-
 # Main menu links
 [menu]
 
