@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <section class="flex flex-col items-center justify-center mt-24 md:mt-48">
+    <img src="{{ .Site.Params.Author.image }}" alt="Profile image" class="h-48 w-48 shadow-lg mb-6" />
+
+    <h1 class="text-5xl font-extrabold text-slate-700 dark:text-slate-200 text-center mb-4">
+      {{ .Site.Params.name | markdownify | emojify }}
+    </h1>
+
+    <p class="text-center text-lg text-slate-500 dark:text-slate-400 max-w-2xl mb-8">
+      {{ .Site.Params.description | markdownify | emojify }}
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      {{ range .Site.Params.social }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 text-2xl">
+          <i class="fa-brands {{ .icon }}"></i>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

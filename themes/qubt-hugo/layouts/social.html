@@ -1,0 +1,10 @@
+{{- if .Site.Params.social }}
+<div class="flex justify-center gap-4 mt-4">
+  {{ range .Site.Params.social }}
+    <a href="{{ .url }}" class="link" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
+      <i class="{{ .icon }} link_svg text-2xl text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400"></i>
+    </a>
+  {{ end }}
+</div>
+{{- end }}
+

@@ -1,0 +1,4 @@
+{{ define "main" }}
+  <!-- Empty main block: removes centered logo, name, greeting, and social links -->
+{{ end }}
+

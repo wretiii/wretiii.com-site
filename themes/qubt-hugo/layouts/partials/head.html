@@ -19,6 +19,15 @@
   <meta name="description" content="{{ . }}" />
 {{ end }}
 
+<!-- Font Awesome for social icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-RXf+QSDCUQs6f0p9dN1v5tv7UQk92v63R8zn+OYK4CzYfJGcbYchdt2nXZcbJK9Rg6Vp4c8rGHUhmw8R0t7E3g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
 {{/* CSS bundle */}}
 {{ $assets := newScratch }}
 {{ $mainCSS := resources.Get "css/compiled/main.css" }}

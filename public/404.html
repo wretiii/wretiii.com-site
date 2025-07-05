@@ -16,8 +16,17 @@
 
 
 
-  <meta name="description" content="Security Consultant | Speaker | Writer" />
+  <meta name="description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP" />
 
+
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-RXf+QSDCUQs6f0p9dN1v5tv7UQk92v63R8zn+OYK4CzYfJGcbYchdt2nXZcbJK9Rg6Vp4c8rGHUhmw8R0t7E3g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
 
 
@@ -49,13 +58,13 @@
 
 
 <meta property="og:title" content="404 Page not found" />
-<meta property="og:description" content="Security Consultant | Speaker | Writer" />
+<meta property="og:description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/404.html" />
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content="Security Consultant | Speaker | Writer"/>
+<meta name="twitter:description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP"/>
 
 
 <script>
@@ -167,6 +176,39 @@
   </nav>
 </section>
 
+<script>
+  const darkLogo = "\/images\/mu-dark.svg";
+  const lightLogo = "\/images\/mu-light.svg";
+
+  const setLogo = (src) => {
+    const logo = document.getElementById("site-logo");
+    if (logo) {
+      logo.src = src;
+    }
+  };
+
+  const updateLogo = () => {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      setLogo(darkLogo);
+    } else {
+      setLogo(lightLogo);
+    }
+  };
+
+  updateLogo();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        setTimeout(updateLogo, 50);
+      });
+    }
+  });
+</script>
+
 
       </header>
       <main>
@@ -196,21 +238,10 @@
       <div class="flex flex-col justify-center p-10">
   
   <p class="text-center text-slate-700 dark:text-slate-400">
-    
-      &copy;
-      2025
-      
-    
-  </p>
-
-  
-  
-  
-  
-  <p class="text-center text-sm text-slate-700 dark:text-slate-400">
-    Published with <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://github.com/chrede88/qubt" target="_blank" rel="noopener noreferrer">Qubt</a>
+    &copy; 2025 Chris Green
   </p>
 </div>
+
 
     </footer>
   </body>

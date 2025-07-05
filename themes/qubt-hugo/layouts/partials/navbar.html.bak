@@ -2,7 +2,7 @@
 
 <section class="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between p-4">
   <a href="{{ .Site.BaseURL }}" class="flex items-center space-x-3">
-    <img id="site-logo" src="{{ .Site.Params.logo_light }}" class="h-8 w-8 rounded-full" alt="Logo" />
+    <img id="site-logo" src="{{ .Site.Params.Author.image }}" class="h-8 w-8 rounded-full" alt="Logo" />
     <span class="self-center whitespace-nowrap text-2xl font-semibold text-slate-700 dark:text-slate-400">
       {{ $title }}
     </span>
@@ -38,37 +38,4 @@
     {{ end }}
   </nav>
 </section>
-
-<script>
-  const darkLogo = "{{ .Site.Params.logo_dark }}";
-  const lightLogo = "{{ .Site.Params.logo_light }}";
-
-  const setLogo = (src) => {
-    const logo = document.getElementById("site-logo");
-    if (logo) {
-      logo.src = src;
-    }
-  };
-
-  const updateLogo = () => {
-    const html = document.documentElement;
-    if (html.classList.contains('dark')) {
-      setLogo(darkLogo);
-    } else {
-      setLogo(lightLogo);
-    }
-  };
-
-  updateLogo();
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        setTimeout(updateLogo, 50);
-      });
-    }
-  });
-</script>
 

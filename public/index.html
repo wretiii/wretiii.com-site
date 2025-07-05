@@ -16,8 +16,17 @@
 
 
 
-  <meta name="description" content="Security Consultant | Speaker | Writer" />
+  <meta name="description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP" />
 
+
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-RXf+QSDCUQs6f0p9dN1v5tv7UQk92v63R8zn+OYK4CzYfJGcbYchdt2nXZcbJK9Rg6Vp4c8rGHUhmw8R0t7E3g=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
 
 
@@ -49,13 +58,13 @@
 
 
 <meta property="og:title" content="Chris Green" />
-<meta property="og:description" content="Security Consultant | Speaker | Writer" />
+<meta property="og:description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://localhost:1313/" />
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Chris Green"/>
-<meta name="twitter:description" content="Security Consultant | Speaker | Writer"/>
+<meta name="twitter:description" content="Security Consultant | Penetration Tester | Speaker &lt;br&gt; CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP"/>
 
 
 <script>
@@ -167,11 +176,89 @@
   </nav>
 </section>
 
+<script>
+  const darkLogo = "\/images\/mu-dark.svg";
+  const lightLogo = "\/images\/mu-light.svg";
+
+  const setLogo = (src) => {
+    const logo = document.getElementById("site-logo");
+    if (logo) {
+      logo.src = src;
+    }
+  };
+
+  const updateLogo = () => {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      setLogo(darkLogo);
+    } else {
+      setLogo(lightLogo);
+    }
+  };
+
+  updateLogo();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        setTimeout(updateLogo, 50);
+      });
+    }
+  });
+</script>
+
 
       </header>
       <main>
         
-  
+  <section class="flex flex-col items-center justify-center mt-24 md:mt-48">
+    <img src="/images/computers-dark.png" alt="Profile image" class="h-48 w-48 shadow-lg mb-6" />
+
+    <h1 class="text-5xl font-extrabold text-slate-700 dark:text-slate-200 text-center mb-4">
+      
+    </h1>
+
+    <p class="text-center text-lg text-slate-500 dark:text-slate-400 max-w-2xl mb-8">
+      Security Consultant | Penetration Tester | Speaker <br> CISSP, OSCP, CISSP, CISA, CRISC, QSA/PCIP, CMMC RP
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      
+      <a href= "https://www.linkedin.com/in/christophermgreen/" target="_blank" aria-label="LinkedIn">
+        <svg class="w-8 h-8 text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400" viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+        </svg>
+      </a>
+
+      
+      <a href="https://bsky.app/profile/wreti.bsky.social" target="_blank" aria-label="Bluesky">
+        <svg class="w-8 h-8 text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/>
+        </svg>
+      </a>
+
+      
+      <a href="https://mastodon.social/@wreti" target="_blank" aria-label="Mastodon">
+        <svg class="w-8 h-8 text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400" viewBox="0 0 75 79" xmlns="http://www.w3.org/2000/svg">
+          <path d="M73.8393 17.4898C72.6973 9.00165 65.2994 2.31235 56.5296 1.01614C55.05 0.797115 49.4441 0 36.4582 0H36.3612C23.3717 0 20.585 0.797115 19.1054 1.01614C10.5798 2.27644 2.79399 8.28712 0.904997 16.8758C-0.00358524 21.1056 -0.100549 25.7949 0.0682394 30.0965C0.308852 36.2651 0.355538 42.423 0.91577 48.5665C1.30307 52.6474 1.97872 56.6957 2.93763 60.6812C4.73325 68.042 12.0019 74.1676 19.1233 76.6666C26.7478 79.2728 34.9474 79.7055 42.8039 77.9162C43.6682 77.7151 44.5217 77.4817 45.3645 77.216C47.275 76.6092 49.5123 75.9305 51.1571 74.7385C51.1797 74.7217 51.1982 74.7001 51.2112 74.6753C51.2243 74.6504 51.2316 74.6229 51.2325 74.5948V68.6416C51.2321 68.6154 51.2259 68.5896 51.2142 68.5661C51.2025 68.5426 51.1858 68.522 51.1651 68.5058C51.1444 68.4896 51.1204 68.4783 51.0948 68.4726C51.0692 68.4669 51.0426 68.467 51.0171 68.4729C45.9835 69.675 40.8254 70.2777 35.6502 70.2682C26.7439 70.2682 24.3486 66.042 23.6626 64.2826C23.1113 62.762 22.7612 61.1759 22.6212 59.5646C22.6197 59.5375 22.6247 59.5105 22.6357 59.4857C22.6466 59.4609 22.6633 59.4391 22.6843 59.422C22.7053 59.4048 22.73 59.3929 22.7565 59.3871C22.783 59.3813 22.8104 59.3818 22.8367 59.3886C27.7864 60.5826 32.8604 61.1853 37.9522 61.1839C39.1768 61.1839 40.3978 61.1839 41.6224 61.1516C46.7435 61.008 52.1411 60.7459 57.1796 59.7621C57.3053 59.7369 57.431 59.7154 57.5387 59.6831C65.4861 58.157 73.0493 53.3672 73.8178 41.2381C73.8465 40.7606 73.9184 36.2364 73.9184 35.7409C73.9219 34.0569 74.4606 23.7949 73.8393 17.4898Z" fill="currentColor"/>
+          <path d="M61.2484 27.0263V48.114H52.8916V27.6475C52.8916 23.3388 51.096 21.1413 47.4437 21.1413C43.4287 21.1413 41.4177 23.7409 41.4177 28.8755V40.0782H33.1111V28.8755C33.1111 23.7409 31.0965 21.1413 27.0815 21.1413C23.4507 21.1413 21.6371 23.3388 21.6371 27.6475V48.114H13.2839V27.0263C13.2839 22.7176 14.384 19.2946 16.5843 16.7572C18.8539 14.2258 21.8311 12.926 25.5264 12.926C29.8036 12.926 33.0357 14.5705 35.1905 17.8559L37.2698 21.346L39.3527 17.8559C41.5074 14.5705 44.7395 12.926 49.0095 12.926C52.7013 12.926 55.6784 14.2258 57.9553 16.7572C60.1531 19.2922 61.2508 22.7152 61.2484 27.0263Z" fill="white"/>
+        </svg>
+        
+      
+      <a href="https://x.com/wreti" target="_blank" aria-label="Twitter">
+        <svg class="w-8 h-8 text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+        </svg>
+      </a>
+
+      
+      <a href="https://github.com/wretiii" target="_blank" aria-label="GitHub">
+        <svg class="w-8 h-8 text-slate-700 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400" viewBox="0 0 496 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/>
+        </svg>
+      </a>
 
       </main>
     </div>
@@ -179,21 +266,10 @@
       <div class="flex flex-col justify-center p-10">
   
   <p class="text-center text-slate-700 dark:text-slate-400">
-    
-      &copy;
-      2025
-      
-    
-  </p>
-
-  
-  
-  
-  
-  <p class="text-center text-sm text-slate-700 dark:text-slate-400">
-    Published with <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-indigo-500 hover:text-indigo-500" href="https://github.com/chrede88/qubt" target="_blank" rel="noopener noreferrer">Qubt</a>
+    &copy; 2025 Chris Green
   </p>
 </div>
+
 
     </footer>
   </body>
