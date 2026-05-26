@@ -1,0 +1,20 @@
+# Netlify security headers
+# https://docs.netlify.com/routing/headers/
+#
+# CSP notes:
+#   - 'unsafe-inline' in script-src is required for the dark-mode FOUC-prevention
+#     script (is:inline). It is a short, developer-controlled snippet with no
+#     user input — the XSS risk is negligible for a fully static site.
+#   - font-src 'self' works because Inter is self-hosted via @fontsource.
+#   - upgrade-insecure-requests forces HTTP assets to HTTPS at browser level.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  X-XSS-Protection: 0

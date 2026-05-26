@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const capabilities = [
+  'Cybersecurity & GRC Consulting',
+  'Information Security Controls Assurance',
+  'ICT Risk Framework Development',
+  'Regulatory Compliance & Maturity Assessments',
+  'Remediation Programme Design & Roadmapping',
+  'Penetration Testing & Control Validation',
+  'vCISO & Trusted Advisory',
+  'Board & Executive Reporting',
+  'Third Party & Vendor Risk Management',
+  'Team Leadership & Development',
+  'Public Speaking & Thought Leadership',
+];
+
+const certifications = [
+  { name: 'CISSP', full: 'Certified Information Systems Security Professional' },
+  { name: 'CISA', full: 'Certified Information Systems Auditor' },
+  { name: 'CRISC', full: 'Certified in Risk and Information Systems Control' },
+  { name: 'PCI QSA', full: 'Qualified Security Assessor' },
+  { name: 'PCIP', full: 'Payment Card Industry Professional' },
+  { name: 'OSCP', full: 'Offensive Security Certified Professional' },
+  { name: 'CMMC RP', full: 'Cybersecurity Maturity Model Certification Registered Practitioner' },
+];
+
+const frameworks = [
+  'NIST CSF v2 · NIST RMF (SP 800-37) · NIST AI RMF 1.0 · NIST SP 800-53 · NIST SP 800-171 · NIST SP 800-30',
+  'PCI DSS 4.0.1 (QSA) · HIPAA · DORA · NERC CIP · CMMC',
+  'ISO/IEC 27001 & 27002 · CIS Controls v8 · SOC 2 (SSAE 18)',
+  'GDPR (advisory) · MITRE ATT&CK · Enterprise Risk Management',
+];
+---
+
+<Layout title="About" description="About Chris Green, cybersecurity executive and GRC leader with 12+ years building security programmes across financial services, healthcare, and critical infrastructure.">
+
+  <div class="py-16 sm:py-20 space-y-16">
+
+    <!-- Header -->
+    <div class="space-y-4">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+        About
+      </h1>
+      <p class="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300 max-w-2xl">
+        Security executive with 12+ years in information security and 8+ years leading governance, risk, and compliance programmes across financial services, healthcare, utilities, and critical infrastructure. Recognised conference speaker on GRC strategy, payment security, and practical compliance programme implementation.
+      </p>
+      <p class="text-base leading-relaxed text-slate-600 dark:text-slate-300 max-w-2xl">
+        Brings a rare combination of technical depth and executive communication: hands-on offensive security experience alongside a track record of delivering board-level risk narratives, building GRC advisory practices, and guiding organisations through complex regulatory environments. Trusted by clients to turn threat-landscape developments into programmes that protect operations and enable informed decisions at the highest levels.
+      </p>
+    </div>
+
+    <!-- Current Role -->
+    <div class="space-y-3">
+      <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+        Current Role
+      </h2>
+      <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+          <div>
+            <p class="font-semibold text-slate-900 dark:text-slate-100">Director of Governance, Risk &amp; Compliance</p>
+            <p class="text-sm text-cyan-600 dark:text-cyan-400 font-medium mt-0.5">
+              Structured Communication Systems, Inc.
+            </p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">New York City</p>
+          </div>
+          <span class="text-xs font-medium text-slate-400 dark:text-slate-500 whitespace-nowrap sm:pt-0.5">
+            March 2026 &ndash; Present
+          </span>
+        </div>
+        <ul class="mt-4 space-y-1.5">
+          {[
+            'Leads the firm\'s GRC consulting practice, directing assessors and penetration testers across financial services, healthcare, utilities, and critical infrastructure clients.',
+            'Acts as virtual CISO and risk advisor to multiple clients, guiding information security governance, regulatory alignment, and board-level risk reporting.',
+            'Translates complex regulatory developments (DORA, HIPAA, NERC CIP, CMMC) into practical programme enhancements and executive-ready risk narratives.',
+            'Leads the firm\'s SOC 2 (SSAE 18) attestation programme, overseeing control design, evidence preparation, and external auditor engagement.',
+            'Owns presales and service development for the GRC portfolio, expanding into AI security assurance, third party risk management, and OT/ICS security.',
+          ].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+              <span class="mt-1.5 shrink-0 w-1 h-1 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Key Capabilities -->
+    <div class="space-y-3">
+      <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+        Key Capabilities
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        {capabilities.map((cap) => (
+          <span class="px-3 py-1.5 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50">
+            {cap}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="space-y-3">
+      <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+        Certifications
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-2">
+        {certifications.map(({ name, full }) => (
+          <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+            <span class="shrink-0 text-xs font-bold text-cyan-600 dark:text-cyan-400 w-20">{name}</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400">{full}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Frameworks -->
+    <div class="space-y-3">
+      <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500">
+        Frameworks &amp; Standards
+      </h2>
+      <div class="space-y-2">
+        {frameworks.map((line) => (
+          <p class="text-sm text-slate-600 dark:text-slate-400 font-mono">{line}</p>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bio / CV download -->
+    <div class="pt-2">
+      <a
+        href="/cv/Christopher-Green-CV.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400 text-white text-sm font-semibold transition-colors duration-150"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Speaker Bio &amp; CV
+      </a>
+    </div>
+
+    <!-- Speaking & Advisory -->
+    <div class="pt-4 pb-2 border-t border-slate-200 dark:border-slate-800">
+      <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-3">
+        Speaking &amp; Advisory
+      </h2>
+      <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 max-w-xl">
+        Available for keynote speaking, executive advisory engagements, and board-level security consultation.
+        Connect via <a href="https://www.linkedin.com/in/christophermgreen" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 underline underline-offset-2 transition-colors">LinkedIn</a>.
+      </p>
+    </div>
+
+  </div>
+</Layout>

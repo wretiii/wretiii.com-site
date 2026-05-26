@@ -1,0 +1,203 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Chris Green',
+  description = 'Security Consultant, Penetration Tester & Speaker. CISSP, OSCP, CISA, CRISC, QSA/PCIP, CMMC RP.',
+} = Astro.props;
+
+const pageTitle = title === 'Chris Green' ? title : `${title} | Chris Green`;
+const year = new Date().getFullYear();
+const { pathname } = Astro.url;
+
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/talks', label: 'Talks' },
+  { href: '/about', label: 'About' },
+];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Chris Green',
+  url: 'https://wretiii.com',
+  jobTitle: 'Director of Governance, Risk & Compliance',
+  description: 'Cybersecurity consultant, penetration tester, and speaker based in New York.',
+  sameAs: [
+    'https://www.linkedin.com/in/christophermgreen',
+    'https://github.com/wretiii',
+    'https://bsky.app/profile/wretiii.com',
+    'https://infosec.exchange/@wretiii',
+    'https://x.com/wretiii',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="wretiii.com" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+    <!-- Security headers (supplement to HTTP-layer headers in _headers / vercel.json) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" />
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <!-- Per-page head content (e.g. Event JSON-LD on talk pages) -->
+    <slot name="head" />
+    <!-- Runs before first paint to prevent flash of wrong theme.
+         Also hooks astro:before-swap so the dark class survives View Transitions navigation. -->
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+        document.addEventListener('astro:before-swap', function (e) {
+          e.newDocument.documentElement.classList.toggle(
+            'dark',
+            document.documentElement.classList.contains('dark')
+          );
+        });
+      })();
+    </script>
+    <!-- Click handlers live in <head> as is:inline so they are registered once
+         for the whole session and survive View Transitions body swaps.
+         AbortController prevents double-attachment if both DOMContentLoaded
+         and astro:page-load fire on the initial page load. -->
+    <script is:inline>
+      (function () {
+        var _ctrl = null;
+
+        function setup() {
+          if (_ctrl) _ctrl.abort();
+          _ctrl = new AbortController();
+          var sig = { signal: _ctrl.signal };
+
+          document.getElementById('theme-toggle')?.addEventListener('click', function () {
+            var isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          }, sig);
+
+          document.getElementById('menu-toggle')?.addEventListener('click', function () {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+          }, sig);
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setup, { once: true });
+        } else {
+          setup();
+        }
+
+        document.addEventListener('astro:page-load', setup);
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
+      <nav class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 flex items-center justify-between h-16">
+
+        <a href="/" class="font-bold text-lg text-cyan-500 dark:text-cyan-400 tracking-tight hover:text-cyan-400 dark:hover:text-cyan-300 transition-colors">
+          wretiii
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden sm:flex items-center gap-8">
+          {navLinks.map(({ href, label }) => (
+            <a
+              href={href}
+              class={`text-sm font-medium transition-colors pb-0.5 border-b-2 ${
+                isActive(href)
+                  ? 'text-slate-900 dark:text-slate-100 border-cyan-500 dark:border-cyan-400'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 border-transparent'
+              }`}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Theme toggle -->
+          <button id="theme-toggle" aria-label="Toggle light/dark mode"
+            class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <!-- Sun: shown in dark mode, click to go light -->
+            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon: shown in light mode, click to go dark -->
+            <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <!-- Mobile hamburger -->
+          <button id="menu-toggle" aria-label="Open navigation menu"
+            class="sm:hidden p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden sm:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-5 pb-4">
+        <div class="flex flex-col gap-1 pt-3">
+          {navLinks.map(({ href, label }) => (
+            <a
+              href={href}
+              class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive(href)
+                  ? 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-400'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
+              }`}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-sm text-slate-400 dark:text-slate-500">
+          &copy; {year} Chris Green
+        </p>
+        <p class="text-xs text-slate-300 dark:text-slate-600">New York City</p>
+      </div>
+    </footer>
+
+  </body>
+</html>

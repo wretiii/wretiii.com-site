@@ -1,0 +1,145 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allTalks = await getCollection('talks');
+const talks = allTalks.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Extract unique topics across all talks, sorted alphabetically
+const allTopics = [...new Set(talks.flatMap((t) => t.data.topics ?? []))].sort();
+
+// Group by year
+const byYear = talks.reduce<Record<number, typeof talks>>((acc, talk) => {
+  const year = talk.data.date.getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(talk);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
+---
+
+<Layout title="Talks" description="Conference talks and presentations by Chris Green on cybersecurity, GRC, and compliance.">
+
+  <div class="py-16 sm:py-20">
+
+    <div class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-3">
+        Talks
+      </h1>
+      <p class="text-slate-500 dark:text-slate-400 text-sm max-w-xl">
+        Conference presentations on cybersecurity governance, risk and compliance, payment security, and practical GRC programme implementation.
+      </p>
+    </div>
+
+    <!-- Topic filters -->
+    {allTopics.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-10" id="topic-filters" role="group" aria-label="Filter talks by topic">
+        <button data-filter="all" class="filter-btn filter-btn-active">All</button>
+        {allTopics.map((topic) => (
+          <button data-filter={topic} class="filter-btn">{topic}</button>
+        ))}
+      </div>
+    )}
+
+    <div class="space-y-12" id="talks-list">
+      {years.map((year) => (
+        <div data-year-group="true">
+          <h2 class="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-4">
+            {year}
+          </h2>
+          <div class="space-y-3">
+            {byYear[year].map((talk) => {
+              const date = talk.data.date.toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              });
+              return (
+                <a
+                  href={`/talks/${talk.id.replace(/\.md$/, '')}`}
+                  data-topics={JSON.stringify(talk.data.topics ?? [])}
+                  class="group flex items-start justify-between gap-6 p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 hover:border-cyan-300 dark:hover:border-cyan-700/50 hover:bg-white dark:hover:bg-slate-800 transition-all duration-150"
+                >
+                  <div class="min-w-0 space-y-1">
+                    <p class="text-xs font-semibold tracking-wide uppercase text-cyan-600 dark:text-cyan-500">
+                      {talk.data.conference}
+                      {talk.data.location && (
+                        <span class="text-slate-400 dark:text-slate-600 font-normal normal-case tracking-normal">
+                          {' '}&middot; {talk.data.location}
+                        </span>
+                      )}
+                    </p>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-white leading-snug">
+                      {talk.data.title}
+                    </p>
+                    {talk.data.topics && (
+                      <div class="flex flex-wrap gap-1.5 pt-1">
+                        {talk.data.topics.slice(0, 4).map((topic) => (
+                          <span class="text-xs px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700/60 text-slate-500 dark:text-slate-400">
+                            {topic}
+                          </span>
+                        ))}
+                        {talk.data.topics.length > 4 && (
+                          <span class="text-xs px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700/60 text-slate-400 dark:text-slate-500">
+                            +{talk.data.topics.length - 4} more
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div class="shrink-0 text-right">
+                    <time
+                      datetime={talk.data.date.toISOString().slice(0, 10)}
+                      class="text-xs font-medium text-slate-400 dark:text-slate-500 whitespace-nowrap"
+                    >
+                      {date}
+                    </time>
+                    {talk.data.slidesUrl && (
+                      <p class="text-xs text-cyan-500 dark:text-cyan-600 mt-1">Slides available</p>
+                    )}
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  function setupFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('[data-topics]');
+    const yearGroups = document.querySelectorAll<HTMLElement>('[data-year-group]');
+
+    if (buttons.length === 0) return;
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter ?? 'all';
+
+        buttons.forEach((b) => b.classList.remove('filter-btn-active'));
+        btn.classList.add('filter-btn-active');
+
+        cards.forEach((card) => {
+          const topics: string[] = JSON.parse(card.dataset.topics ?? '[]');
+          const show = filter === 'all' || topics.includes(filter);
+          card.classList.toggle('hidden', !show);
+        });
+
+        yearGroups.forEach((group) => {
+          const hasVisible = Array.from(group.querySelectorAll<HTMLElement>('[data-topics]')).some(
+            (c) => !c.classList.contains('hidden')
+          );
+          group.classList.toggle('hidden', !hasVisible);
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupFilters);
+</script>
